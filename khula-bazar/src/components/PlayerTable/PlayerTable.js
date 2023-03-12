@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { store } from "../../data/store.js";
 import "./PlayerTable.css";
 
-export default () => {
+const PlayerTable = () => {
+  const globalState = useContext(store);
+  console.log(globalState);
+
   return (
     <div className="container">
       <div className="mat">
@@ -11,3 +15,5 @@ export default () => {
     </div>
   );
 };
+
+export default PlayerTable;

@@ -1,4 +1,4 @@
-export default {
+const state = {
   stage: "trump_selection", // one of [trump_selection, card_pulling, card_play, result]
   game: {
     turn: "player1",
@@ -81,3 +81,5 @@ export default {
     },
   },
 };
+
+export default state;
