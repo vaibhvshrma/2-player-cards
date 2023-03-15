@@ -1,21 +1,17 @@
 import { GameState, Player } from "../data/gamestate";
 import * as Constants from "../constants";
-
-export interface GlobalState {
-  store: GameState;
-  dispatch: () => void;
-}
+import { GlobalState } from ".";
 
 class StateReader {
-  store: GameState;
+  state: GameState;
   constructor(globalState: GlobalState) {
-    this.store = globalState.store;
+    this.state = globalState.state;
   }
 
   getPlayer = (playerId: string) => {
     return playerId === Constants.PLAYER_1_ID
-      ? this.store.player1
-      : this.store.player2;
+      ? this.state.player1
+      : this.state.player2;
   };
   getPlayer1 = () => this.getPlayer(Constants.PLAYER_1_ID);
   getPlayer2 = () => this.getPlayer(Constants.PLAYER_2_ID);
