@@ -1,7 +1,7 @@
 // Following the article https://blog.logrocket.com/react-hooks-context-redux-state-management/
 
 import React, { createContext, useReducer } from "react";
-import initialGameState from "./gamestate.js";
+import initialGameState from "./gamestate.ts";
 
 const initialState = { ...initialGameState };
 const store = createContext(initialState);

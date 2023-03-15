@@ -1,4 +1,34 @@
-const state = {
+export interface GameState {
+  stage: string;
+  game: Game;
+  player1: Player;
+  player2: Player;
+  discardPile: {
+    player1Card: Card | {};
+    player2Card: Card | {};
+  };
+}
+
+export interface Player {
+  handsToMake: number;
+  handsMade: number;
+  cards: {
+    inHand: {
+      value: Array<Card>;
+    };
+    onTable: {
+      value: { top: Card; bottom: Card | {} }[];
+    };
+  };
+}
+
+export interface Card {
+  uuid: string;
+}
+
+export interface Game {}
+
+const state: GameState = {
   stage: "trump_selection", // one of [trump_selection, card_pulling, card_play, result]
   game: {
     turn: "player1",
@@ -75,6 +105,7 @@ const state = {
             top: {
               uuid: "hash9",
             },
+            bottom: {},
           },
         ],
       },

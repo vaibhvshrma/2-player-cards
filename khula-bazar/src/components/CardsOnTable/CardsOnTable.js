@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 
-const CardsOnTable = () => {
-  return (
-    <div>CardsOnTable</div>
-  )
-}
+const CardsOnTable = (props) => {
+  const { cards } = props;
+  return <div>CardsOnTable</div>;
+};
 
 export default CardsOnTable;
