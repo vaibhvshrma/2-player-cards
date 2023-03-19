@@ -1,4 +1,4 @@
-import { GameState, Player } from "../data/gamestate";
+import { GameState, Player } from "../data/interfaces";
 import * as Constants from "../constants";
 import { GlobalState } from ".";
 

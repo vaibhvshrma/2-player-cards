@@ -1,5 +1,5 @@
 import StateReader from "./StateReader";
-import { GameState } from "../data/gamestate";
+import { GameState } from "../data/interfaces";
 
 export interface GlobalState {
   state: GameState;

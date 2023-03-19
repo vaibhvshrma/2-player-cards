@@ -1,32 +1,18 @@
-export interface GameState {
-  stage: string;
-  game: Game;
-  player1: Player;
-  player2: Player;
-  discardPile: {
-    player1Card: Card | {};
-    player2Card: Card | {};
-  };
-}
+import { CardDetails, GameState } from "./interfaces";
+import { distributeCards } from "./cards";
 
-export interface Player {
-  handsToMake: number;
-  handsMade: number;
-  cards: {
-    inHand: {
-      value: Array<Card>;
-    };
-    onTable: {
-      value: { top: Card; bottom: Card | {} }[];
-    };
-  };
-}
+const [player1Cards, player2Cards] = distributeCards();
 
-export interface Card {
-  uuid: string;
-}
+const layoutCardsForPlayer = (cards: CardDetails[]) => {
+  // Distribute 15 cards in between table faceUp, faceDown and inHand
+  const faceUp = [], faceDown = [], inHand = [];
 
-export interface Game {}
+  cards.forEach((details, idx) => {
+
+  })
+
+  return {}
+}
 
 const state: GameState = {
   stage: "trump_selection", // one of [trump_selection, card_pulling, card_play, result]
@@ -42,7 +28,7 @@ const state: GameState = {
       player1ToMake: 0,
       player2ToMake: 0,
       player1HasMade: 0,
-      player2ToMade: 0,
+      player2HasMade: 0,
     },
   },
   discardPile: {
