@@ -1,18 +1,37 @@
-import { CardDetails, GameState } from "./interfaces";
+import { GameState, PlayerCards } from "./interfaces";
 import { distributeCards } from "./cards";
 
 const [player1Cards, player2Cards] = distributeCards();
 
-const layoutCardsForPlayer = (cards: CardDetails[]) => {
+const layoutCardsForPlayer = (cardUuids: string[]) => {
   // Distribute 15 cards in between table faceUp, faceDown and inHand
-  const faceUp = [], faceDown = [], inHand = [];
+  if (cardUuids.length !== 15) {
+    throw Error(
+      `Required number of cards not present to begin game. Expected 15 found ${cardUuids.length}`
+    );
+  }
+  const playerCards: PlayerCards = {
+    inHand: {
+      value: [],
+    },
+    onTable: {
+      value: [],
+    },
+  };
 
-  cards.forEach((details, idx) => {
+  playerCards.inHand.value = cardUuids.slice(0, 5).map((uuid) => {
+    return { uuid };
+  });
 
-  })
+  for (var idx = 5; idx < 10; idx++) {
+    playerCards.onTable.value.push({
+      top: { uuid: cardUuids[idx] },
+      bottom: { uuid: cardUuids[idx + 5] },
+    });
+  }
 
-  return {}
-}
+  return playerCards;
+};
 
 const state: GameState = {
   stage: "trump_selection", // one of [trump_selection, card_pulling, card_play, result]
@@ -38,64 +57,12 @@ const state: GameState = {
   player1: {
     handsToMake: 0,
     handsMade: 0,
-    cards: {
-      inHand: {
-        value: [
-          {
-            uuid: "hash1",
-          },
-          {
-            uuid: "hash2",
-          },
-        ],
-      },
-      onTable: {
-        value: [
-          {
-            top: {
-              uuid: "hash3",
-            },
-            bottom: {
-              uuid: "hash4",
-            },
-          },
-        ],
-      },
-    },
+    cards: layoutCardsForPlayer(player1Cards),
   },
   player2: {
     handsToMake: 0,
     handsMade: 0,
-    cards: {
-      inHand: {
-        value: [
-          {
-            uuid: "hash5",
-          },
-          {
-            uuid: "hash6",
-          },
-        ],
-      },
-      onTable: {
-        value: [
-          {
-            top: {
-              uuid: "hash7",
-            },
-            bottom: {
-              uuid: "hash8",
-            },
-          },
-          {
-            top: {
-              uuid: "hash9",
-            },
-            bottom: {},
-          },
-        ],
-      },
-    },
+    cards: layoutCardsForPlayer(player2Cards),
   },
 };
 

@@ -15,12 +15,16 @@ export interface Player {
   cards: PlayerCards;
 }
 
+export interface CardsOnTable {
+  top: Card; bottom: Card | {}
+}
+
 export interface PlayerCards {
   inHand: {
     value: Array<Card>;
   };
   onTable: {
-    value: { top: Card; bottom: Card | {} }[];
+    value: Array<CardsOnTable>;
   };
 }
 
