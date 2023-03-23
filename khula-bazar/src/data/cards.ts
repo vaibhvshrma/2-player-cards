@@ -1,10 +1,14 @@
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
-import { CardDetails } from "./interfaces";
+import { Card, CardDetails } from "./interfaces";
 import { Suites, SuitesWithValue7Card, Values } from "../constants";
+import {GameError} from "../exceptions";
 
+class Cards {
+  constructor() {}
+}
 const createCards = () => {
-  const cards: CardDetails[] = [];
+  const cards: Map<string, CardDetails> = new Map<string, CardDetails>();
   const uuids: Array<string> = [];
 
   _.values(Suites).forEach((suite: string) => {
@@ -13,7 +17,7 @@ const createCards = () => {
         continue;
       }
       const uuid = uuidv4();
-      cards.push({
+      cards.set(uuid, {
         uuid,
         suite,
         value: cardValue,
@@ -25,7 +29,7 @@ const createCards = () => {
   return { uuids, cards };
 };
 
-const { uuids: cardUuids, cards: cardDetails } = createCards();
+const { uuids: cardUuids, cards: cardsDetails } = createCards();
 
 const shuffle = (array: Array<any>) => {
   let currentIndex = array.length,
@@ -55,6 +59,13 @@ const distributeCards = () => {
   return [player1Cards, player2Cards];
 };
 
-export { createCards, distributeCards, cardDetails, cardUuids };
+const getCardDetails = (card: Card) => {
+  if (!cardsDetails.has(card.uuid)) {
+    throw new GameError(`Card with uuid ${card.uuid} was not found`);
+  }
+  return cardsDetails.get(card.uuid);
+};
 
-export default cardDetails;
+export { createCards, distributeCards, getCardDetails, cardsDetails, cardUuids };
+
+export default cardsDetails;

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import CardsOnTable from "../CardsOnTable/CardsOnTable.js";
+import CardsOnTable from "../CardsOnTable/CardsOnTable.tsx";
 import { store } from "../../data/store.js";
 import StateManager from "../../StateManager";
+import * as Constants from "../../constants";
 import "./PlayerTable.css";
 
 const PlayerTable = () => {
@@ -13,9 +14,17 @@ const PlayerTable = () => {
   return (
     <div className="container">
       <div className="mat">
-        <div className="opponent"></div>
+        <div className="opponent">
+        <CardsOnTable
+            cards={stateManager.reader.getCardsOnTable(Constants.PLAYER_2_ID)}
+          />
+        </div>
         <div className="discard-pile"></div>
-        <div className="self"><CardsOnTable cards={stateManager.reader.getCardsOnTable("player1")}/></div>
+        <div className="self">
+          <CardsOnTable
+            cards={stateManager.reader.getCardsOnTable(Constants.PLAYER_1_ID)}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { GameState, PlayerCards } from "./interfaces";
 import { distributeCards } from "./cards";
+import { InitializationError } from "../exceptions";
 
 const [player1Cards, player2Cards] = distributeCards();
 

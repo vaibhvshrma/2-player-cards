@@ -16,7 +16,7 @@ export interface Player {
 }
 
 export interface CardsOnTable {
-  top: Card; bottom: Card | {}
+  top: Card; bottom?: Card
 }
 
 export interface PlayerCards {
