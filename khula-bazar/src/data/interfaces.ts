@@ -51,3 +51,8 @@ export interface Game {
     player2HasMade: number;
   };
 }
+
+export interface GlobalState {
+  state: GameState;
+  dispatch: () => void;
+}

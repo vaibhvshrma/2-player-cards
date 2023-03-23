@@ -1,6 +1,5 @@
-import { GameState, Player } from "../data/interfaces";
+import { GameState, GlobalState, Player } from "../data/interfaces";
 import * as Constants from "../constants";
-import { GlobalState } from ".";
 
 class StateReader {
   state: GameState;

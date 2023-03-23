@@ -1,10 +1,5 @@
 import StateReader from "./StateReader";
-import { GameState } from "../data/interfaces";
-
-export interface GlobalState {
-  state: GameState;
-  dispatch: () => void;
-}
+import { GameState, GlobalState } from "../data/interfaces";
 
 class StateManager {
   globalState: GlobalState;

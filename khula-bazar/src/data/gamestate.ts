@@ -6,7 +6,7 @@ const [player1Cards, player2Cards] = distributeCards();
 const layoutCardsForPlayer = (cardUuids: string[]) => {
   // Distribute 15 cards in between table faceUp, faceDown and inHand
   if (cardUuids.length !== 15) {
-    throw Error(
+    throw new InitializationError(
       `Required number of cards not present to begin game. Expected 15 found ${cardUuids.length}`
     );
   }
