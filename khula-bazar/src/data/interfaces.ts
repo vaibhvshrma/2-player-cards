@@ -1,5 +1,11 @@
+export type GameStageType =
+  | "trump_selection"
+  | "card_pulling"
+  | "card_play"
+  | "result";
+
 export interface GameState {
-  stage: string;
+  stage: GameStageType;
   game: Game;
   player1: Player;
   player2: Player;
@@ -16,7 +22,8 @@ export interface Player {
 }
 
 export interface CardsOnTable {
-  top: Card; bottom?: Card
+  top: Card;
+  bottom?: Card;
 }
 
 export interface PlayerCards {
@@ -32,9 +39,11 @@ export interface Card {
   uuid: string;
 }
 
+export type SuiteType = "HEARTS" | "DIAMONDS" | "CLUBS" | "SPADES";
+
 export interface CardDetails {
   uuid: string;
-  suite: string;
+  suite: SuiteType;
   value: number;
 }
 
@@ -42,7 +51,7 @@ export interface Game {
   turn: string;
   // TODO: implement cards pulling
   cardsToPull: {};
-  trumpSuite: string | undefined;
+  trumpSuite?: SuiteType;
   handsInfo: {
     handsPlayed: number;
     player1ToMake: number;

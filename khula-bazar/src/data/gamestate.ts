@@ -1,6 +1,7 @@
 import { GameState, PlayerCards } from "./interfaces";
 import { distributeCards } from "./cards";
 import { InitializationError } from "../exceptions";
+import { Suites } from "../constants";
 
 const [player1Cards, player2Cards] = distributeCards();
 
@@ -42,7 +43,7 @@ const state: GameState = {
       puller: "player1",
       num_cards: 0,
     },
-    trumpSuite: "hearts",
+    trumpSuite: Suites.HEARTS,
     handsInfo: {
       handsPlayed: 0,
       player1ToMake: 0,

@@ -9,3 +9,8 @@
   width: 100%;
   background-color: #421c29;
 }
+
+.table-cards-container {
+  display: grid;
+  align-items: center;
+}

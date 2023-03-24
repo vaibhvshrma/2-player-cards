@@ -13,14 +13,14 @@ const PlayerTable = () => {
 
   return (
     <div className="container">
-      <div className="mat">
+      <div className="table-cards-container mat">
         <div className="opponent">
         <CardsOnTable
             cards={stateManager.reader.getCardsOnTable(Constants.PLAYER_2_ID)}
           />
         </div>
         <div className="discard-pile"></div>
-        <div className="self">
+        <div className="table-cards-container self">
           <CardsOnTable
             cards={stateManager.reader.getCardsOnTable(Constants.PLAYER_1_ID)}
           />
